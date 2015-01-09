@@ -86,6 +86,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'project_static'),
+)
+
 # celery setting
 
 BROKER_URL = 'django://'
