@@ -13,6 +13,10 @@ html {
 body {
   margin: 0;
 }
+.hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 article,
 aside,
 details,
@@ -267,8 +271,8 @@ th {
 @font-face {
   font-family: 'Glyphicons Halflings';
 
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('../../../../project_static/library/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.eot');
+  src: url('../../../../project_static/library/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../../../../project_static/library/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.woff') format('woff'), url('../../../../project_static/library/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../../../../project_static/library/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;
@@ -2941,6 +2945,12 @@ fieldset[disabled] .btn-success.active {
   color: #fff;
   background-color: #5bc0de;
   border-color: #46b8da;
+}
+.btn-info-width {
+  color: #fff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+  width: 90px;
 }
 .btn-info:hover,
 .btn-info:focus,

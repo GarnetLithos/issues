@@ -1,7 +1,32 @@
 {% extends "ranklist/base.html" %}
 
+{% block css_block %}{% endblock %}
+
 {% block months_active %}class="active"{% endblock %}
 
-{% block side %}{% endblock %}
+{% block list_container %}
+    <input id="datepicker" class="datepicker bg-primary datepicker-width" data-provide="datepicker" value="{{ time.year }}"></button>
+    <hr class="btn-warning hr">
+    <div id="listContents">
+        {% for month in months %}
+            <button type="button" class="btn btn-info-width">{{ month }}</button><br>
+        {% endfor %}
+    </div>
+{% endblock %}
 
 {% block contents %}{% endblock %}
+
+{% block script_block %}
+    <script>
+        var page = 'months';
+        var year = {{ time.year }};
+        var month = {{ time.month }};
+        $('#datepicker').datepicker({
+            format: "yyyy",
+            minViewMode: "years",
+            autoclose: true
+        }).on('changeDate', function(ev){
+            change_list();
+        });
+    </script>
+{% endblock %}

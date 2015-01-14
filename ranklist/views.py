@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import datetime
 
 
 def bullets1(request):
@@ -18,16 +19,36 @@ def base(request):
 
 
 def hours(request):
-    return render(request, 'ranklist/hours.html', )
+    time = datetime.datetime.now()
+    print(time.hour)
+    return render(request, 'ranklist/hours.html', {'time': time, 'hours': reversed(range(0, time.hour + 1))})
 
 
 def days(request):
-    return render(request, 'ranklist/days.html', )
+    time = datetime.datetime.now()
+    weekday_list = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
+    weekday = []
+    start = time.weekday()
+    for i in range(time.day):
+        weekday.append(weekday_list[start])
+        start -= 1
+        if start == -1:
+            start = 6
+
+    weekday.reverse()
+    context = {
+        'time': time,
+        'days': reversed(range(1, time.day + 1)),
+        'weekday': weekday,
+    }
+    return render(request, 'ranklist/days.html', context)
 
 
 def months(request):
-    return render(request, 'ranklist/months.html', )
+    time = datetime.datetime.now()
+    return render(request, 'ranklist/months.html', {'time': time, 'months': reversed(range(1, time.month + 1))})
 
 
 def years(request):
-    return render(request, 'ranklist/years.html', )
+    time = datetime.datetime.now()
+    return render(request, 'ranklist/years.html', {'time': time, 'years': reversed(range(2014, time.year + 1))})

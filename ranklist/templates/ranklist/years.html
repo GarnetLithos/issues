@@ -2,6 +2,21 @@
 
 {% block years_active %}class="active"{% endblock %}
 
-{% block side %}{% endblock %}
+{% block list_container %}
+    <hr class="btn-warning hr">
+    <div id="listContents">
+        {% for year in years %}
+            <button type="button" class="btn btn-info-width">{{ year }}</button>
+            <br>
+        {% endfor %}
+    </div>
+{% endblock %}
 
 {% block contents %}{% endblock %}
+
+{% block script_block %}
+    <script>
+        var page = 'years';
+        var year = '{{ time.year }}';
+    </script>
+{% endblock %}

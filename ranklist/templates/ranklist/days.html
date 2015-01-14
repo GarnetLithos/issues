@@ -1,7 +1,34 @@
 {% extends "ranklist/base.html" %}
 
+{% block css_block %}{% endblock %}
+
 {% block days_active %}class="active"{% endblock %}
 
-{% block side %}{% endblock %}
+{% block list_container %}
+    <input id="datepicker" class="datepicker bg-primary datepicker-width" data-provide="datepicker" value="{{ time.year }}-{% if time.month < 10 %}0{{ time.month }}{% else %}{{ time.month }}{% endif %}"></button>
+    <hr class="btn-warning hr">
+    <div id="listContents">
+        {% for day in days %}
+            <button type="button" class="btn btn-info-width">{{ day }} {{ weekday.pop }}</button>
+            <br>
+        {% endfor %}
+    </div>
+{% endblock %}
 
 {% block contents %}{% endblock %}
+
+{% block script_block %}
+    <script>
+        var page = 'days';
+        var year = {{ time.year }};
+        var month = {{ time.month }};
+        var date = {{ time.day }};
+        $('#datepicker').datepicker({
+            format: "yyyy-mm",
+            minViewMode: "months",
+            autoclose: true
+        }).on('changeDate', function(ev){
+            change_list();
+        });
+    </script>
+{% endblock %}
