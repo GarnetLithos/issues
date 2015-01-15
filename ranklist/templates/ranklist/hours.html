@@ -6,14 +6,10 @@
 
 {% block list_container %}
     <input id="datepicker" class="datepicker bg-primary datepicker-width" data-provide="datepicker" value="{{ time.year }}-{% if time.month < 10 %}0{{ time.month }}{% else %}{{ time.month }}{% endif %}-{{ time.day }}"></button>
-
-{#    <h4><span id="time" year="{{ time.year }}" month="{{ time.month }}" day="{{ time.day }}" class="label label-primary">{{ time.year }}-{{ time.month }}-{{ time.day }}</span></h4>#}
-{#    <button type="button" id="leftBtn" class="bton btn-primary"><span class="glyphicon glyphicon-chevron-left"></span></button>#}
-{#    <button type="button" id="rightBtn" class="bton btn-primary"><span class="glyphicon glyphicon-chevron-right"></span></button>#}
     <hr class="btn-warning hr">
     <div id="listContents">
         {% for hour in hours %}
-            <button type="button" class="btn btn-info-width">{{ hour }} : 00</button>
+            <button type="button" class="btn btn-info-width" onclick="clickList(0, {{ time.year }}, {{ time.month }}, {{ time.day }}, {{ hour }})">{{ hour }} : 00</button>
             <br>
         {% endfor %}
     </div>
@@ -32,7 +28,7 @@
             format: "yyyy-mm-dd",
             autoclose: true
         }).on('changeDate', function(ev){
-            change_list();
+            changeList();
         });
     </script>
 {% endblock %}

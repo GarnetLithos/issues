@@ -9,7 +9,7 @@
     <hr class="btn-warning hr">
     <div id="listContents">
         {% for day in days %}
-            <button type="button" class="btn btn-info-width">{{ day }} {{ weekday.pop }}</button>
+            <button type="button" class="btn btn-info-width" onclick="clickList(0, {{ time.year }}, {{ time.month }}, {{ day }})">{{ day }} {{ weekday.pop }}</button>
             <br>
         {% endfor %}
     </div>
@@ -28,7 +28,7 @@
             minViewMode: "months",
             autoclose: true
         }).on('changeDate', function(ev){
-            change_list();
+            changeList();
         });
     </script>
 {% endblock %}

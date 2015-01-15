@@ -6,7 +6,7 @@
     <hr class="btn-warning hr">
     <div id="listContents">
         {% for year in years %}
-            <button type="button" class="btn btn-info-width">{{ year }}</button>
+            <button type="button" class="btn btn-info-width" onclick="clickList(0, {{ year }})">{{ year }}</button>
             <br>
         {% endfor %}
     </div>

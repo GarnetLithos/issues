@@ -34,7 +34,7 @@ $('#listBtn').click(function(){
     });
 });
 
-function change_list() {
+function changeList() {
     $('#listContents').empty();
     var pickerTime = $('#datepicker').datepicker("getDate");
     var pickerYear = pickerTime.getFullYear();
@@ -45,11 +45,11 @@ function change_list() {
     if(page === "months"){
         if(pickerYear < year){
             for(var i = 12; i > 0; i--) {
-                $('#listContents').append("<button type='button' class='btn btn-info-width'>" + i + "</button><br>");
+                $('#listContents').append("<button type='button' class='btn btn-info-width' onclick='clickList(0, "+pickerYear+", "+i+")'>" + i + "</button><br>");
             }
         }else if(pickerYear === year){
             for(var i = month; i > 0; i--) {
-                $('#listContents').append("<button type='button' class='btn btn-info-width'>" + i + "</button><br>");
+                $('#listContents').append("<button type='button' class='btn btn-info-width' onclick='clickList(0, "+pickerYear+", "+i+")'>" + i + "</button><br>");
             }
         }else{
 
@@ -61,7 +61,7 @@ function change_list() {
             var monthFinalDay = monthFinalTime.getDay(); //getDay (from 0-6), (from SUN-SAT)
 
             for(var i = monthFinalDate; i > 0; i--) {
-                $('#listContents').append("<button type='button' class='btn btn-info-width'>" + i + " " + daylist[monthFinalDay] + "</button>");
+                $('#listContents').append("<button type='button' class='btn btn-info-width' onclick='clickList(0, "+pickerYear+", "+(pickerMonth+1)+", "+i+")'>" + i + " " + daylist[monthFinalDay] + "</button><br>");
                 monthFinalDay -= 1;
                 if(monthFinalDay === -1){
                     monthFinalDay = 6;
@@ -71,7 +71,7 @@ function change_list() {
             var todayDay = new Date(pickerYear, pickerMonth, date).getDay();
 
             for(var i = date; i > 0; i--) {
-                $('#listContents').append("<button type='button' class='btn btn-info-width'>" + i + " " + daylist[todayDay] + "</button>");
+                $('#listContents').append("<button type='button' class='btn btn-info-width' onclick='clickList(0, "+pickerYear+", "+(pickerMonth+1)+", "+i+")'>" + i + " " + daylist[todayDay] + "</button><br>");
                 todayDay -= 1;
                 if(todayDay === -1){
                     todayDay = 6;
@@ -83,14 +83,28 @@ function change_list() {
     }else if(page === "hours"){
         if((pickerYear < year) || (pickerYear === year && pickerMonth < (month-1)) || (pickerYear === year && pickerMonth === (month-1) && pickerDate < date)){
             for(var i = 23; i >= 0; i--) {
-                $('#listContents').append("<button type='button' class='btn btn-info-width'>" + i + " : 00</button>");
+                $('#listContents').append("<button type='button' class='btn btn-info-width' onclick='clickList(0, "+pickerYear+", "+(pickerMonth+1)+", "+pickerDate+", "+i+")'>" + i + " : 00</button><br>");
             }
         }else if(pickerYear === year && pickerMonth === (month-1) || pickerDate === date){
             for(var i = hour; i >= 0; i--) {
-                $('#listContents').append("<button type='button' class='btn btn-info-width'>" + i + " : 00</button>");
+                $('#listContents').append("<button type='button' class='btn btn-info-width' onclick='clickList(0, "+pickerYear+", "+(pickerMonth+1)+", "+pickerDate+", "+i+")'>" + i + " : 00</button><br>");
             }
         }else{
 
         }
     }
 };
+
+function clickList(site, year, month, day, hour) {
+    if (page === "years"){
+        alert(page+": "+year);
+    }else if(page === "months"){
+        alert(page+": "+year+": "+month);
+    }else if(page === "days"){
+        alert(page+": "+year+": "+month+": "+day);
+    }else if(page === "hours"){
+        alert(page+": "+year+": "+month+": "+day+": "+hour);
+    }else {
+        alert("error");
+    }
+}

@@ -9,7 +9,8 @@
     <hr class="btn-warning hr">
     <div id="listContents">
         {% for month in months %}
-            <button type="button" class="btn btn-info-width">{{ month }}</button><br>
+            <button type="button" class="btn btn-info-width" onclick="clickList(0, {{ time.year }}, {{ month }})">{{ month }}</button>
+            <br>
         {% endfor %}
     </div>
 {% endblock %}
@@ -26,7 +27,7 @@
             minViewMode: "years",
             autoclose: true
         }).on('changeDate', function(ev){
-            change_list();
+            changeList();
         });
     </script>
 {% endblock %}
