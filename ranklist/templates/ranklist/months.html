@@ -9,7 +9,7 @@
     <hr class="btn-warning hr">
     <div id="listContents">
         {% for month in months %}
-            <button type="button" class="btn btn-info-width" onclick="clickList(0, {{ time.year }}, {{ month }})">{{ month }}</button>
+            <button type="button" class="btn btn-info-width" onclick="clickList('all', {{ time.year }}, {{ month }})">{{ month }}</button>
             <br>
         {% endfor %}
     </div>

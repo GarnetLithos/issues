@@ -9,7 +9,7 @@
     <hr class="btn-warning hr">
     <div id="listContents">
         {% for hour in hours %}
-            <button type="button" class="btn btn-info-width" onclick="clickList(0, {{ time.year }}, {{ time.month }}, {{ time.day }}, {{ hour }})">{{ hour }} : 00</button>
+            <button type="button" class="btn btn-info-width" onclick="clickList('all', {{ time.year }}, {{ time.month }}, {{ time.day }}, {{ hour }})">{{ hour }} : 00</button>
             <br>
         {% endfor %}
     </div>

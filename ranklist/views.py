@@ -1,5 +1,7 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 import datetime
+from ranklist.models import RankData
 
 
 def bullets1(request):
@@ -20,7 +22,6 @@ def base(request):
 
 def hours(request):
     time = datetime.datetime.now()
-    print(time.hour)
     return render(request, 'ranklist/hours.html', {'time': time, 'hours': reversed(range(0, time.hour + 1))})
 
 
@@ -52,3 +53,19 @@ def months(request):
 def years(request):
     time = datetime.datetime.now()
     return render(request, 'ranklist/years.html', {'time': time, 'years': reversed(range(2014, time.year + 1))})
+
+
+def year_data(request, site, year):
+    return HttpResponse("year_data - site: "+site+" year: "+year)
+
+
+def month_data(request, site, year, month):
+    return HttpResponse("month_data - site: "+site+" year: "+year+" month: "+month)
+
+
+def day_data(request, site, year, month, day):
+    return HttpResponse("day_data - site: "+site+" year: "+year+" month: "+month+" day: "+day)
+
+
+def hour_data(request, site, year, month, day, hour):
+    return HttpResponse("hour_data - site: "+site+" year: "+year+" month: "+month+" day: "+day+" hour: "+hour)

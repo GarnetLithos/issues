@@ -4,8 +4,9 @@
 .bullet .range.s0 { fill: #eee; }
 .bullet .range.s1 { fill: #ddd; }
 .bullet .range.s2 { fill: #ccc; }
-.bullet .measure.s0 { fill: lightsteelblue; }
-.bullet .measure.s1 { fill: steelblue; }
+.bullet .measure.s0 { fill: #f01c00; }
+.bullet .measure.s1 { fill: #5d8bff; }
+.bullet .measure.s2 { fill: #22b600; }
 .bullet .title { font-size: 14px; font-weight: bold; }
 .bullet .subtitle { fill: #999; }
 
