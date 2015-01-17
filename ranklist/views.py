@@ -1,7 +1,12 @@
+# -*- coding: utf-8 -*-
+
 from django.http import HttpResponse
 from django.shortcuts import render
 import datetime
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from ranklist.models import RankData
+from ranklist.serializers import RankDataSerializer
 
 
 def bullets1(request):
@@ -55,9 +60,16 @@ def years(request):
     return render(request, 'ranklist/years.html', {'time': time, 'years': reversed(range(2014, time.year + 1))})
 
 
+@api_view(['GET'])
 def year_data(request, site, year):
-    return HttpResponse("year_data - site: "+site+" year: "+year)
+    rankdata = RankData.objects.filter(time__year=year)
+    serializer = RankDataSerializer(rankdata, many=True)
 
+    # content = {"aaa": "aa", "bb": 1}
+    #
+    # return Response(content)
+    return Response(serializer.data)
+    # return HttpResponse("year_data - site: "+site+" year: "+year)
 
 def month_data(request, site, year, month):
     return HttpResponse("month_data - site: "+site+" year: "+year+" month: "+month)

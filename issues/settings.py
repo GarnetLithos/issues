@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Django settings for issues project.
 
@@ -40,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'kombu.transport.django',
     'ranklist',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -105,4 +108,12 @@ CELERYBEAT_SCHEDULE = {
         'task': 'ranklist.tasks.get_daum_rank_list',
         'schedule': crontab(minute='*/5')
     }
+}
+
+# rest_framework setting
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'ranklist.renderers.UTF8JSONRenderer',
+    )
 }
