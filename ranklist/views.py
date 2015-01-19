@@ -6,7 +6,7 @@ import datetime
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from ranklist.models import RankData
-from ranklist.serializers import RankDataSerializer
+from django.db.models import Count
 
 
 def bullets1(request):
@@ -63,21 +63,63 @@ def years(request):
 @api_view(['GET'])
 def year_data(request, site, year):
     rankdata = RankData.objects.filter(time__year=year)
-    serializer = RankDataSerializer(rankdata, many=True)
+    contents = create_contents(rankdata)
 
-    # content = {"aaa": "aa", "bb": 1}
-    #
-    # return Response(content)
-    return Response(serializer.data)
-    # return HttpResponse("year_data - site: "+site+" year: "+year)
+    return Response(contents)
 
+
+@api_view(['GET'])
 def month_data(request, site, year, month):
-    return HttpResponse("month_data - site: "+site+" year: "+year+" month: "+month)
+    rankdata = RankData.objects.filter(time__year=year).filter(time__month=month)
+    contents = create_contents(rankdata)
+
+    return Response(contents)
 
 
+@api_view(['GET'])
 def day_data(request, site, year, month, day):
-    return HttpResponse("day_data - site: "+site+" year: "+year+" month: "+month+" day: "+day)
+    rankdata = RankData.objects.filter(time__year=year).filter(time__month=month).filter(time__day=day)
+    contents = create_contents(rankdata)
+
+    return Response(contents)
 
 
+@api_view(['GET'])
 def hour_data(request, site, year, month, day, hour):
-    return HttpResponse("hour_data - site: "+site+" year: "+year+" month: "+month+" day: "+day+" hour: "+hour)
+    rankdata = RankData.objects.filter(time__year=year).filter(time__month=month).filter(time__day=day).filter(time__hour=hour)
+    contents = create_contents(rankdata)
+
+    return Response(contents)
+
+
+def create_contents(rankdata):
+    rankdata_all = rankdata.values('word').annotate(count=Count('word')).order_by('-count')
+    rankdata_exclude_nate = rankdata_all[:].exclude(site='nate')
+    rankdata_exclude_nate_daum = rankdata_exclude_nate[:].exclude(site='daum')
+    rank_data_list = []
+    rank_data_list.append(rankdata_exclude_nate)
+    rank_data_list.append(rankdata_exclude_nate_daum)
+    contents = []
+
+    for rankdata in rankdata_all:
+        line_data = {}
+        line_data['title'] = rankdata['word']
+        line_data['subtitle'] = 'count'
+        line_data['ranges'] = [0, rankdata_all[0]['count'], rankdata_all[0]['count']]
+        line_data['measures'] = [rankdata['count']]
+
+        for measure_data_list in rank_data_list:
+            measure = 0
+            for measure_data in measure_data_list:
+                if measure_data['word'] == line_data['title']:
+                    measure = measure_data['count']
+                    # do add pop measure data
+
+                    break
+
+            line_data['measures'].append(measure)
+
+        line_data['markers'] = [rankdata_all[0]['count']]
+        contents.append(line_data)
+
+    return contents
