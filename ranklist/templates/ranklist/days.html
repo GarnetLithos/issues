@@ -9,7 +9,7 @@
     <hr class="btn-warning hr">
     <div id="listContents">
         {% for day in days %}
-            <button type="button" class="btn btn-info-width" onclick="clickList('all', {{ time.year }}, {{ time.month }}, {{ day }})">{{ day }} {{ weekday.pop }}</button>
+            <button type="button" class="btn btn-info-width" onclick="drowChart('all', {{ time.year }}, {{ time.month }}, {{ day }})">{{ day }} {{ weekday.pop }}</button>
             <br>
         {% endfor %}
     </div>
