@@ -70,7 +70,9 @@ def year_data(request, site, year):
 
 @api_view(['GET'])
 def month_data(request, site, year, month):
-    rankdata = RankData.objects.filter(time__year=year).filter(time__month=month)
+    start_date = datetime.date(int(year), int(month), 1)
+    end_date = datetime.date(int(year), int(month) + 1, 1)
+    rankdata = RankData.objects.filter(time__range=(start_date, end_date))
     contents = create_contents(rankdata)
 
     return Response(contents)
@@ -78,7 +80,9 @@ def month_data(request, site, year, month):
 
 @api_view(['GET'])
 def day_data(request, site, year, month, day):
-    rankdata = RankData.objects.filter(time__year=year).filter(time__month=month).filter(time__day=day)
+    start_date = datetime.date(int(year), int(month), int(day))
+    end_date = start_date + datetime.timedelta(days=1)
+    rankdata = RankData.objects.filter(time__range=(start_date, end_date))
     contents = create_contents(rankdata)
 
     return Response(contents)
@@ -86,7 +90,10 @@ def day_data(request, site, year, month, day):
 
 @api_view(['GET'])
 def hour_data(request, site, year, month, day, hour):
-    rankdata = RankData.objects.filter(time__year=year).filter(time__month=month).filter(time__day=day).filter(time__hour=hour)
+    start_date = datetime.date(int(year), int(month), int(day))
+    end_date = start_date + datetime.timedelta(days=1)
+    rankdata = RankData.objects.filter(time__range=(start_date, end_date), time__hour=hour)
+    # rankdata = RankData.objects.filter(time__year=year).filter(time__month=month).filter(time__day=day).filter(time__hour=hour)
     contents = create_contents(rankdata)
 
     return Response(contents)
