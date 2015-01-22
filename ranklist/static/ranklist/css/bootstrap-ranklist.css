@@ -13,10 +13,6 @@ html {
 body {
   margin: 0;
 }
-.hr {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
 article,
 aside,
 details,
@@ -2945,12 +2941,6 @@ fieldset[disabled] .btn-success.active {
   color: #fff;
   background-color: #5bc0de;
   border-color: #46b8da;
-}
-.btn-info-width {
-  color: #fff;
-  background-color: #5bc0de;
-  border-color: #46b8da;
-  width: 90px;
 }
 .btn-info:hover,
 .btn-info:focus,

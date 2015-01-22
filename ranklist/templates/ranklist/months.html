@@ -6,10 +6,9 @@
 
 {% block list_container %}
     <input id="datepicker" class="datepicker bg-primary datepicker-width" data-provide="datepicker" value="{{ time.year }}"></button>
-    <hr class="btn-warning hr">
     <div id="listContents">
         {% for month in months %}
-            <button type="button" class="btn btn-info-width" onclick="drowChart('all', {{ time.year }}, {{ month }})">{{ month }}</button>
+            <button class="listBtn" onclick="drowChart('all', {{ time.year }}, {{ month }})">{{ month }}</button>
             <br>
         {% endfor %}
     </div>
@@ -29,5 +28,7 @@
         }).on('changeDate', function(ev){
             changeList();
         });
+
+        drowChart('all', year, month)
     </script>
 {% endblock %}

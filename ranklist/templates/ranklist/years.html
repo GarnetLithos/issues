@@ -3,10 +3,9 @@
 {% block years_active %}class="active"{% endblock %}
 
 {% block list_container %}
-    <hr class="btn-warning hr">
     <div id="listContents">
         {% for year in years %}
-            <button type="button" class="btn btn-info-width" onclick="drowChart('all', {{ year }})">{{ year }}</button>
+            <button class="listBtn" onclick="drowChart('all', {{ year }})">{{ year }}</button>
             <br>
         {% endfor %}
     </div>
@@ -18,5 +17,7 @@
     <script>
         var page = 'years';
         var year = '{{ time.year }}';
+
+    drowChart('all', year)
     </script>
 {% endblock %}

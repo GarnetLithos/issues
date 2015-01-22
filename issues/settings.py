@@ -111,6 +111,10 @@ CELERYBEAT_SCHEDULE = {
     'add-every-5-minute-nate': {
         'task': 'ranklist.tasks.get_nate_rank_list',
         'schedule': crontab(minute='*/5')
+    },
+    'add-every-5-minute-zum': {
+        'task': 'ranklist.tasks.get_zum_rank_list',
+        'schedule': crontab(minute='*/5')
     }
 }
 

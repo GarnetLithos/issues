@@ -47,8 +47,14 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-3 col-md-3 bg-info" align="center">{% block list_container %}<button id="listBtn" type="button" class="btn btn-success">click</button>{% endblock %}</div>
-        <div class="col-xs-9 col-md-9 bg-success">
+        <div class="col-xs-3 col-md-3 padding-0" align="center">
+            {% block list_container %}
+                <button id="listBtn" type="button" class="btn btn-success">click</button>
+                <br>
+                <button class="listBtn">click</button>
+            {% endblock %}</div>
+        <div class="col-xs-9 col-md-9 padding-0">
+            <div><a href="http://www.naver.com" class="naver">&nbsp; naver &nbsp;</a><a href="http://www.daum.net" class="daum">&nbsp; daum &nbsp;</a><a href="http://www.zum.com" class="zum">&nbsp; zum &nbsp;</a><a href="http://www.nate.com" class="nate">&nbsp; nate &nbsp;</a></div>
             <div id="contents">
                 {% block contents %}
 

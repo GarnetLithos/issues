@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from django.http import HttpResponse
 from django.shortcuts import render
 import datetime
 from rest_framework.decorators import api_view
@@ -46,7 +45,7 @@ def days(request):
         'time': time,
         'days': reversed(range(1, time.day + 1)),
         'weekday': weekday,
-    }
+        }
     return render(request, 'ranklist/days.html', context)
 
 
@@ -57,7 +56,7 @@ def months(request):
 
 def years(request):
     time = datetime.datetime.now()
-    return render(request, 'ranklist/years.html', {'time': time, 'years': reversed(range(2014, time.year + 1))})
+    return render(request, 'ranklist/years.html', {'time': time, 'years': reversed(range(2015, time.year + 1))})
 
 
 @api_view(['GET'])
@@ -93,40 +92,51 @@ def hour_data(request, site, year, month, day, hour):
     start_date = datetime.date(int(year), int(month), int(day))
     end_date = start_date + datetime.timedelta(days=1)
     rankdata = RankData.objects.filter(time__range=(start_date, end_date), time__hour=hour)
-    # rankdata = RankData.objects.filter(time__year=year).filter(time__month=month).filter(time__day=day).filter(time__hour=hour)
     contents = create_contents(rankdata)
 
     return Response(contents)
 
 
 def create_contents(rankdata):
-    rankdata_all = rankdata.values('word').annotate(count=Count('word')).order_by('-count')
-    rankdata_exclude_nate = rankdata_all[:].exclude(site='nate')
-    rankdata_exclude_nate_daum = rankdata_exclude_nate[:].exclude(site='daum')
-    rank_data_list = []
-    rank_data_list.append(rankdata_exclude_nate)
-    rank_data_list.append(rankdata_exclude_nate_daum)
     contents = []
 
-    for rankdata in rankdata_all:
-        line_data = {}
-        line_data['title'] = rankdata['word']
-        line_data['subtitle'] = 'count'
-        line_data['ranges'] = [0, rankdata_all[0]['count'], rankdata_all[0]['count']]
-        line_data['measures'] = [rankdata['count']]
+    if rankdata.count() == 0:
+        empty ={}
+        empty['title'] = 'No data'
+        empty['subtitle'] = 'on this period.'
+        empty['ranges'] = [0]
+        empty['measures'] = [0]
+        empty['markers'] = [0]
+        contents.append(empty)
+    else:
+        rankdata_all = rankdata.values('word').annotate(count=Count('word')).order_by('-count')
+        rankdata_exclude_nate = rankdata_all[:].exclude(site='nate')
+        rankdata_exclude_nate_zum = rankdata_exclude_nate[:].exclude(site='zum')
+        rankdata_exclude_nate_zum_daum = rankdata_exclude_nate_zum[:].exclude(site='daum')
+        rank_data_list = []
+        rank_data_list.append(rankdata_exclude_nate)
+        rank_data_list.append(rankdata_exclude_nate_zum)
+        rank_data_list.append(rankdata_exclude_nate_zum_daum)
 
-        for measure_data_list in rank_data_list:
-            measure = 0
-            for measure_data in measure_data_list:
-                if measure_data['word'] == line_data['title']:
-                    measure = measure_data['count']
-                    # do add pop measure data
+        for rankdata in rankdata_all:
+            line_data = {}
+            line_data['title'] = rankdata['word']
+            line_data['subtitle'] = 'count'
+            line_data['ranges'] = [0]
+            line_data['measures'] = [rankdata['count']]
 
-                    break
+            for measure_data_list in rank_data_list:
+                measure = 0
+                for measure_data in measure_data_list:
+                    if measure_data['word'] == line_data['title']:
+                        measure = measure_data['count']
+                        # do add pop measure data
 
-            line_data['measures'].append(measure)
+                        break
 
-        line_data['markers'] = [rankdata_all[0]['count']]
-        contents.append(line_data)
+                line_data['measures'].append(measure)
+
+            line_data['markers'] = [rankdata_all[0]['count']]
+            contents.append(line_data)
 
     return contents

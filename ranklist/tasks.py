@@ -6,6 +6,7 @@ import requests
 import re
 from ranklist.models import RankData
 
+
 @shared_task
 def get_naver_rank_list():
     response = requests.get('http://www.naver.com')
@@ -33,14 +34,19 @@ def get_nate_rank_list():
 
     return 'get_nate_rank_list'
 
+@shared_task
+def get_zum_rank_list():
+    response = requests.get('http://www.zum.com')
+    rank_list = re.findall('class="d_btn_keyword" title="(.+?)">', response.text)
+
+    save_model(rank_list, 'zum')
+
+    return 'get_zum_rank_list'
+
 
 def save_model(rank_list, site):
-    for i in range(10):
+    for i in range(5):
         rankdata = RankData()
         rankdata.word = rank_list[i]
         rankdata.site = site
         rankdata.save()
-
-# get_nate_rank_list()
-# get_naver_rank_list()
-# get_daum_rank_list()

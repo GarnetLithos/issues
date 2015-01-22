@@ -1,16 +1,74 @@
+body {
+    background-color: #393939;
+    color: #fff;
+}
+.padding-0 {
+    padding: 0;
+}
+.naver {
+    color: #a7ca00;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+.daum {
+    color: #ffdd00;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+.zum {
+    color: #5d8bff;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+.nate {
+    color: #f16054;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+.container {
+    margin-top: 5px;
+}
+.hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #fff;
+}
+text {
+    fill: #fff;
+}
+.listBtn {
+    margin: 10px 5px 10px 10px;
+    width: 117px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #393939;
+    border: 0 solid #ffffff;
+    border-right-width: 3px;
+}
+.datepicker-width {
+    width: 120px;
+    text-align: center;
+    margin: 5px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #393939;
+    border: 3px solid #ffffff;
+}
 .bullet { font: 10px sans-serif; }
-.bullet .marker { stroke: #000; stroke-width: 2px; }
-.bullet .tick line { stroke: #666; stroke-width: .5px; }
+.bullet .marker { stroke: #fff; stroke-width: 2px; }
+.bullet .tick line { stroke: #fff; stroke-width: 0.5px; }
 .bullet .range.s0 { fill: #eee; }
 .bullet .range.s1 { fill: #ddd; }
 .bullet .range.s2 { fill: #ccc; }
-.bullet .measure.s0 { fill: #f01c00; }
+.bullet .measure.s0 { fill: #f16054; }
 .bullet .measure.s1 { fill: #5d8bff; }
-.bullet .measure.s2 { fill: #22b600; }
-.bullet .title { font-size: 14px; font-weight: bold; }
+.bullet .measure.s2 { fill: #ffdd00; }
+.bullet .measure.s3 { fill: #a7ca00; }
+.bullet .title { font-size: 14px; font-weight: bold; fill: #fff;}
 .bullet .subtitle { fill: #999; }
-
-.datepicker-width {
-    width: 110px;
-    text-align: center;
-}
