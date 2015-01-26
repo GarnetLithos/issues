@@ -4,9 +4,7 @@ from django.conf.urls import patterns, url
 from ranklist import views
 
 urlpatterns = patterns('',
-    url(r'^test/bullets1', views.bullets1, name='bullets1'),
-    url(r'^test/bullets2', views.bullets2, name='bullets2'),
-    url(r'^test/sortBarChart', views.sort_bar_chart, name='sort_bar_chart'),
+    url(r'^$', views.days, ),
     url(r'^base$', views.base, name='base'),
     url(r'^hours$', views.hours, name='hours'),
     url(r'^days$', views.days, name='days'),
