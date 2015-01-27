@@ -88,6 +88,7 @@ function drowChart(site, year, month, day, hour){
 
         title.append("text")
             .attr("class", "title")
+            .attr("onclick", "modalShow(this)")
             .text(function(d) { return d.title; });
 
         title.append("text")
@@ -114,4 +115,34 @@ function createUrl(site, year, month, day, hour) {
     }else {
         console.log("createUrl error.")
     }
+}
+
+function modalShow(text) {
+    $('#modal').modal('show');
+    $('#modalTitle').html($(text).html());
+}
+
+function linkNaver() {
+    $('#modal').modal('hide');
+    linkUrl = "http://search.naver.com/search.naver?where=nexearch&query="+$('#modalTitle').html()+"&ie=utf8";
+    window.open(linkUrl, '_blank');
+}
+
+
+function linkDaum() {
+    $('#modal').modal('hide');
+    linkUrl = "http://search.daum.net/search?nil_suggest=btn&rtupcoll=DQP%2CNNS&w=tot&DA=SBC&q="+$('#modalTitle').html();
+    window.open(linkUrl, '_blank');
+}
+
+function linkZum() {
+    $('#modal').modal('hide');
+    linkUrl = "http://search.zum.com/search.zum?method=uni&option=accu&qm=f_typing.top&query="+$('#modalTitle').html();
+    window.open(linkUrl, '_blank');
+}
+
+function linkNate() {
+    $('#modal').modal('hide');
+    linkUrl = "http://search.daum.net/nate?thr=sbma&w=tot&q="+$('#modalTitle').html();
+    window.open(linkUrl, '_blank');
 }

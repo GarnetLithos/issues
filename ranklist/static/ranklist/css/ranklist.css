@@ -5,6 +5,9 @@ body {
 .padding-0 {
     padding: 0;
 }
+#listContainer {
+    z-index: 1;
+}
 .naver {
     color: #a7ca00;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -40,9 +43,13 @@ body {
 text {
     fill: #fff;
 }
+.linkBtn {
+    background-color: #393939;
+    border: 0 solid #ffffff;
+}
 .listBtn {
     margin: 10px 5px 10px 10px;
-    width: 117px;
+    width: 115px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 14px;
     font-weight: bold;

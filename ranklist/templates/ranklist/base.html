@@ -47,12 +47,18 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-3 col-md-3 padding-0" align="center">
+        <div id="listContainer" class="col-xs-3 col-md-3 padding-0">
             {% block list_container %}
 
-            {% endblock %}</div>
+            {% endblock %}
+        </div>
         <div class="col-xs-9 col-md-9 padding-0">
-            <div><a href="http://www.naver.com" class="naver">&nbsp; naver &nbsp;</a><a href="http://www.daum.net" class="daum">&nbsp; daum &nbsp;</a><a href="http://www.zum.com" class="zum">&nbsp; zum &nbsp;</a><a href="http://www.nate.com" class="nate">&nbsp; nate &nbsp;</a></div>
+            <div align="right">
+                <a target="_blank" href="http://www.naver.com" class="naver">&nbsp; naver &nbsp;</a>
+                <a target="_blank" href="http://www.daum.net" class="daum">&nbsp; daum &nbsp;</a>
+                <a target="_blank" href="http://www.zum.com" class="zum">&nbsp; zum &nbsp;</a>
+                <a target="_blank" href="http://www.nate.com" class="nate">&nbsp; nate &nbsp;</a>
+            </div>
             <div id="contents">
                 {% block contents %}
 
@@ -61,7 +67,23 @@
         </div>
     </div>
 </div>
-
+<!-- Modal -->
+<div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title" id="modalTitle">Modal title</h4>
+        </div>
+        <div class="modal-body">
+            <button class="linkBtn naver" onclick="linkNaver()">&nbsp; naver &nbsp;</button>
+            <button class="linkBtn daum" onclick="linkDaum()">&nbsp; daum &nbsp;</button>
+            <button class="linkBtn zum" onclick="linkZum()">&nbsp; zum &nbsp;</button>
+            <button class="linkBtn nate" onclick="linkNate()">&nbsp; nate &nbsp;</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="{% static 'library/jquery/1.11.1/jquery.js' %}"></script>

@@ -14,9 +14,4 @@ urlpatterns = patterns('',
     url(r'^(?P<site>\w+)/month/(?P<year>\d+)/(?P<month>\d+)$', views.month_data, name='month_data'),
     url(r'^(?P<site>\w+)/day/(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)$', views.day_data, name='day_data'),
     url(r'^(?P<site>\w+)/hour/(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)/(?P<hour>\d+)$', views.hour_data, name='hour_data'),
-
-    # url(r'^$', views.IndexView.as_view(), name='index'),
-    # url(r'^(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
-    # url(r'^(?P<pk>\d+)/results/$', views.ResultView.as_view(), name='results'),
-    # url(r'^(?P<question_id>\d+)/vote/$', views.vote, name='vote'),
 )

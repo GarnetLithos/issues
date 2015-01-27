@@ -5448,7 +5448,7 @@ a.list-group-item-danger.active:focus {
   color: #000;
   text-shadow: 0 1px 0 #fff;
   filter: alpha(opacity=20);
-  opacity: .2;
+  /*opacity: .2;*/
 }
 .close:hover,
 .close:focus {
@@ -5506,7 +5506,7 @@ button.close {
 }
 .modal-content {
   position: relative;
-  background-color: #fff;
+  background-color: #393939;
   -webkit-background-clip: padding-box;
           background-clip: padding-box;
   border: 1px solid #999;
@@ -5538,6 +5538,8 @@ button.close {
 }
 .modal-header .close {
   margin-top: -2px;
+  color: #ffffff;
+  background-color: #393939;
 }
 .modal-title {
   margin: 0;
