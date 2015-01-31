@@ -99,22 +99,10 @@ BROKER_URL = 'django://'
 
 # celery periodic setting
 CELERYBEAT_SCHEDULE = {
-    'add-every-5-minute-naver': {
-        'task': 'ranklist.tasks.get_naver_rank_list',
+    'add-every-5-minute-get-rank-list': {
+        'task': 'ranklist.tasks.get_rank_list',
         'schedule': crontab(minute='*/5')
         # 'schedule': timedelta(seconds=5)
-    },
-    'add-every-5-minute-daum': {
-        'task': 'ranklist.tasks.get_daum_rank_list',
-        'schedule': crontab(minute='*/5')
-    },
-    'add-every-5-minute-nate': {
-        'task': 'ranklist.tasks.get_nate_rank_list',
-        'schedule': crontab(minute='*/5')
-    },
-    'add-every-5-minute-zum': {
-        'task': 'ranklist.tasks.get_zum_rank_list',
-        'schedule': crontab(minute='*/5')
     }
 }
 
