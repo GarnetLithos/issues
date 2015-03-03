@@ -119,7 +119,7 @@ function createUrl(site, year, month, day, hour) {
 
 function modalShow(text) {
     $('#modal').modal('show');
-    $('#modalTitle').html($(text).html());
+    $('#modalTitle').html(text.textContent);
 }
 
 function linkNaver() {
